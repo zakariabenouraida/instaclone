@@ -25,7 +25,7 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div><img src="/svg/codecamplogo.svg" alt=""style="height:20px;border-right:1px solid #333;"class="pr-3"></div>
-                    <div class="pl-3">InstaClone</div>
+                    <div class="pl-3">InstaClone</div> 
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
@@ -50,6 +50,9 @@
                             </li>
                             @endif
                             @else
+                            <a class="navbar-brand d-flex align-items-center" href="/profile/{{auth()->user()->id}}">
+                                <div ><img src="/svg/user-solid.svg" style="height:25px"class="pl-3"></div>
+                            </a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }} <span class="caret"></span>
@@ -70,7 +73,9 @@
                         @endguest
                     </ul>
                 </div>
+
             </div>
+
         </nav>
         
         <main class="py-4">
