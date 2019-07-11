@@ -13,7 +13,8 @@
                         <img src="{{ $post->user->profile->profileImage() }}" class="rounded-circle w-100" style="max-width:40px;">
                     </div>
                     <div>
-                    <div class="font-weight-bold"><a href="/profile/{{$post->user->id}}"><span class="text-dark">{{$post->user->username}}</span></a><a href=""class="pl-3">follow</a></div>
+                                                                                                                     {{-- user-id="{{ $user->id }}" follows="{{ $follows }}" --}}
+                    <div class="font-weight-bold"><a href="/profile/{{$post->user->id}}"><span class="text-dark">{{$post->user->username}}</span></a><a href=""class="pl-3"  ></a></div>
                     </div>
                 </div>
                 <hr>
