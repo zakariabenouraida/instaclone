@@ -18,7 +18,22 @@
         <div class="row   pb-4">
             <div class="col-6 offset-3"style="border:1px solid #E6E6E6;">
                 <div>
+                        <img src="/svg/heart-regular.svg"style="height:20px;"class="mr-3"><img src="/svg/comment-regular.svg"style="height:20px">
+                </div>
+                <div>
                     <p> <span class="font-weight-bold"><a href="/profile/{{$post->user->id}}"><span class="text-dark">{{$post->user->username}}</span></a> :</span> {{ $post->caption }}</p>
+                </div>
+                <div>
+                        {{-- <div class="form-group row">
+                                <label for="comment" class="col-md-4 col-form-label">comment</label>
+                                    <input id="comment" name="comment" type="text" class="form-control @error('comment') is-invalid @enderror" value="{{ old('comment') ?? $user->profile->comment }}" required autocomplete="comment" autofocus>
+            
+                                    @error('comment')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                            </div> --}}
                 </div>
             </div>
         </div>
