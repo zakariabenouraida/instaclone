@@ -38,6 +38,7 @@
             buttonText() {
                 return (this.status) ? 'Unfollow' : 'Follow';
             }
+
         }
 
     }
