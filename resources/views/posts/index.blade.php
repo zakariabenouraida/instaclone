@@ -18,16 +18,41 @@
         <div class="row   pb-4">
             <div class="col-6 offset-3"style="border:1px solid #E6E6E6;">
                 <div>
-                    
-                        <img src="/svg/heart-regular.svg"style="height:20px;"class="mr-3"><img src="/svg/comment-regular.svg"style="height:20px">
+                    <img src="/svg/heart-regular.svg"style="height:20px;"class="mr-3"><img src="/svg/comment-regular.svg"style="height:20px">
                 </div>
                 <div>
                     <p> <span class="font-weight-bold"><a href="/profile/{{$post->user->id}}"><span class="text-dark">{{$post->user->username}}</span></a> :</span> {{ $post->caption }}</p>
                 </div>
             </div>
-        </div>
-
-   
+        </div> 
+        <div class="col-6 offset-3 mb-3" style="border:1px solid #E6E6E6;">      
+        @foreach($post->comments as $comment)
+            <div class="row">
+            <div class="col-6">
+                    <div class="coms">
+                        <p><strong>{{ $comment->user->username }}</strong>: {{$comment->comment}}</p>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        <form action="/poo/comments" method="post">
+            @csrf
+            <div class="row">
+            <div class="col-6 p-3 d-flex align-items-center">
+                    <input id="comment" name="comment" type="text" placeholder="Add comment..."class="form-control @error('comment') is-invalid @enderror" required autocomplete="comment">
+                    <input id="post_id" name="post_id" type="hidden" value="{{$post->id}}">
+                         @error('comment')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                </div>
+                <div class="col-6 p-3 d-flex align-items-center">
+                    <button class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </form>
+        </div> 
     @endforeach
     <div class="row">
         <div class="col-12 d-flex justify-content-center">

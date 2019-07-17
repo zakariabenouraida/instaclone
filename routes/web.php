@@ -18,6 +18,7 @@ Auth::routes();
 // Route::get('/email', function () {
 //     return new NewUserWelcomeMail();
 // });
+Route::post('/poo/comments', 'CommentsController@store');
 
 Route::get('/', 'PostsController@index');
 Route::get('/p/create', 'PostsController@create');
@@ -26,6 +27,7 @@ Route::get('/p/{post}', 'PostsController@show');
 
 Route::post('follow/{user}', 'FollowsController@store');
 
+// Route::post('comments/{post_id}',['uses' => 'CommentsController@store','as'=>'comments.store']);
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
