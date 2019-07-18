@@ -21,7 +21,7 @@
                 <p> <span class="font-weight-bold"><a href="/profile/{{$post->user->id}}"><span class="text-dark">{{$post->user->username}}</span></a> :</span> {{ $post->caption }}</p>
             </div>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-12">
                     @foreach($post->comments as $comment)
                     <div class="coms">
                         <p><strong>{{ $comment->user->username }}</strong>: {{$comment->comment}}</p>
@@ -32,7 +32,7 @@
             <form action="/poo/comments" method="post" >
             @csrf
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-10">
                             <input id="comment" name="comment" type="text" placeholder="Add comment..."class="form-control @error('comment') is-invalid @enderror" required autocomplete="comment">
                             <input id="post_id" name="post_id" type="hidden" value="{{$post->id}}">
                                 @error('comment')
@@ -41,7 +41,7 @@
                                     </span>
                                 @enderror
                     </div>
-                    <div class="col-4">
+                    <div class="col-2">
                         <button class="btn btn-primary">Send</button>
                     </div>
                 </div>
