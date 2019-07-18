@@ -20,7 +20,7 @@ class ProfilesController extends Controller
             });
         $followersCount = Cache::remember(
             'count.followers.' . $user->id,
-            now()->addSeconds(0),
+            now()->addSeconds(5),
             function () use ($user) {
                 return $user->profile->followers->count();
             });
