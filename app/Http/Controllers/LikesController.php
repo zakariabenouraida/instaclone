@@ -19,6 +19,8 @@ class LikesController extends Controller
 
     public function store(User $user)
     {
-        return auth()->user()->likes();
+        return auth()->user()->likes()->toggle($user->post);
+        // return auth()->user()->likes()->toggle($user->post);
+
     }
 }

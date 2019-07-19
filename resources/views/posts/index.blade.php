@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="infinite-scroll">
 <div class="container">
-
     @foreach ($posts as $post)
         <div class="row" >
             <div class="col-6 offset-3 p-3 d-flex align-items-center"style="border:1px solid #E6E6E6;">
@@ -60,4 +60,20 @@
         </div>
     </div>
 </div>
+</div>
+<script type="text/javascript">
+    $('ul.pagination').hide();
+    $(function() {
+        $('.infinite-scroll').jscroll({
+            autoTrigger: true,
+            loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />',
+            padding: 0,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'div.infinite-scroll',
+            callback: function() {
+                $('ul.pagination').remove();
+            }
+        });
+    });
+</script>
 @endsection
