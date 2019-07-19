@@ -51,7 +51,8 @@ class PostsController extends Controller
     
     public function show(\App\POST $post)
     {
-        
-        return view('posts.show', compact('post'));
+        $likes = (auth()->user()) ? auth()->user()->likes->contains($post->id) : false;
+
+        return view('posts.show', compact('post', 'likes'));
     }
 }

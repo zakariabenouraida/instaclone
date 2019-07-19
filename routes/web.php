@@ -20,7 +20,7 @@ Auth::routes();
 // });
 Route::post('/poo/comments', 'CommentsController@store');
 
-Route::post('like/{post}','LikesController@store');
+Route::post('like/{user}','LikesController@store');
 
 Route::get('/', 'PostsController@index');
 Route::get('/p/create', 'PostsController@create');

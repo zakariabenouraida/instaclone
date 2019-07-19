@@ -1,25 +1,41 @@
 <template>
     <div>
-        <button class="btn btn-link" @click="likePost">Like</button>
+        <!-- v-text="linkText" -->
+        <button class="btn btn-link" @click="likePost">like</button>
     </div>
 </template>
 
 <script>
     export default {
-        props:['postId'],
+        props:['userId','likes'],
     
         mounted() {
             console.log('Component mounted.')
         },
+        data: function () {
+            return {
+                status: this.likes,
+            }
+        },
 
         methods:{
             likePost(){
-                axios.post('/like/'+ this.postId)
-                    // .then(response => {
-                    //     alert(response.data);
-                    // });
+                axios.post('/like/'+ this.userId)
+                    .then(response => {
+                        this.status = ! this.status;
+
+                        console.log("hhhh : " + this.likes);
+                        console.log(response.data);
+                    });
             }
-        }
+        },
+
+        // computed: {
+        //     linkText() {
+        //         return (this.status) ? 'Unlike' : 'Like';
+        //     }
+
+        // }
 
     }
 </script>

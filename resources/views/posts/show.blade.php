@@ -24,12 +24,13 @@
                 <div class="col-12">
                     @foreach($post->comments as $comment)
                     <div class="coms">
-                        <p><strong>{{ $comment->user->username }}</strong>: {{$comment->comment}}</p>
+                        <p><strong><a href="/profile/{{$comment->user->id}}"class="text-dark">{{ $comment->user->username }}</strong></a>: {{$comment->comment}}</p>
                     </div>
                     @endforeach
                 </div>
             </div>
-            <like-button post-id="{{$post->id}}"></like-button>
+            <like-button user-id="{{$post->user->id}}" likes="{{$likes}}"></like-button>
+            <!-- <like-button post-id="{{$post->id}}"></like-button> -->
             <form action="/poo/comments" method="post" >
             @csrf
                 <div class="row">

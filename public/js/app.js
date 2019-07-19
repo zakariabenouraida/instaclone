@@ -1892,18 +1892,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['postId'],
+  props: ['userId', 'likes'],
   mounted: function mounted() {
     console.log('Component mounted.');
   },
+  data: function data() {
+    return {
+      status: this.likes
+    };
+  },
   methods: {
     likePost: function likePost() {
-      axios.post('/like/' + this.postId); // .then(response => {
-      //     alert(response.data);
-      // });
+      var _this = this;
+
+      axios.post('/like/' + this.userId).then(function (response) {
+        _this.status = !_this.status;
+        console.log("hhhh : " + _this.likes);
+        console.log(response.data);
+      });
     }
-  }
+  } // computed: {
+  //     linkText() {
+  //         return (this.status) ? 'Unlike' : 'Like';
+  //     }
+  // }
+
 });
 
 /***/ }),
@@ -37229,7 +37244,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("button", { staticClass: "btn btn-link", on: { click: _vm.likePost } }, [
-      _vm._v("Like")
+      _vm._v("like")
     ])
   ])
 }
@@ -49411,8 +49426,11 @@ Vue.component('like-button', __webpack_require__(/*! ./components/LikeButton.vue
 
 window.onload = function () {
   var app = new Vue({
-    el: '#app'
-  });
+    el: '#app' // el: '#applike'
+
+  }); // const applike = new Vue({
+  //     el: '#applike',
+  // });
 };
 
 /***/ }),

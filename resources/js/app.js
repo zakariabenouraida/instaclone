@@ -33,5 +33,11 @@ Vue.component('like-button', require('./components/LikeButton.vue').default);
 window.onload = function () {
     const app = new Vue({
         el: '#app',
+        // el: '#applike'
     });
+
+    // const applike = new Vue({
+    //     el: '#applike',
+    // });
+    
 }
