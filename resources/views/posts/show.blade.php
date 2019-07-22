@@ -29,7 +29,15 @@
                     @endforeach
                 </div>
             </div>
-            <like-button user-id="{{$post->user->id}}" likes="{{$likes}}"></like-button>
+            <div class="container">
+                <div class="row pb-3">
+            <div>
+                <!-- <img src="/svg/heart-regular.svg"style="height:20px;"class="mr-3"> -->
+                <a href="#comment"><img src="/svg/comment-regular.svg"style="height:20px"></a>
+            </div>
+            </div>
+            </div>
+            <!-- <like-button user-id="{{$post->user->id}}" likes="{{$likes}}"></like-button> -->
             <!-- <like-button post-id="{{$post->id}}"></like-button> -->
             <form action="/poo/comments" method="post" >
             @csrf

@@ -10,10 +10,6 @@
             <title>{{ config('app.name', 'Laravel') }}</title>
             
             <!-- Scripts -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-            <script src="/js/jquery.jscroll.min.js"></script>
-            <script src="//unpkg.com/jscroll@#.#.#/dist/jquery.jscroll.min.js"></script>
-    
             <script src="{{ asset('js/app.js') }}"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

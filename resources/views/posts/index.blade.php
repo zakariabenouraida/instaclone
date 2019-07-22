@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="infinite-scroll">
 <div class="container">
     @foreach ($posts as $post)
         <div class="row" >
@@ -18,7 +17,8 @@
         <div class="row">
             <div class="col-6 offset-3"style="border:1px solid #E6E6E6;border-top:none;border-bottom:none">
                 <div>
-                    <img src="/svg/heart-regular.svg"style="height:20px;"class="mr-3"><img src="/svg/comment-regular.svg"style="height:20px">
+                    <!-- <img src="/svg/heart-regular.svg"style="height:20px;"class="mr-3"> -->
+                    <a href="/p/{{ $post->id }}"><img src="/svg/comment-regular.svg"style="height:20px"></a>
                 </div>
                 <div>
                     <p> <span class="font-weight-bold"><a href="/profile/{{$post->user->id}}"><span class="text-dark">{{$post->user->username}}</span></a> :</span> {{ $post->caption }}</p>
@@ -37,7 +37,7 @@
         @endforeach
         <form action="/poo/comments" method="post">
             @csrf
-            <div class="row pb-3">
+            <div class="row p-3">
             <div class="col-10  d-flex align-items-center">
                 <input id="comment" name="comment" type="text" placeholder="Add comment..."class="form-control @error('comment') is-invalid @enderror" required autocomplete="comment">
                 <input id="post_id" name="post_id" type="hidden" value="{{$post->id}}">
@@ -60,20 +60,5 @@
         </div>
     </div>
 </div>
-</div>
-<script type="text/javascript">
-    $('ul.pagination').hide();
-    $(function() {
-        $('.infinite-scroll').jscroll({
-            autoTrigger: true,
-            loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />',
-            padding: 0,
-            nextSelector: '.pagination li.active + li a',
-            contentSelector: 'div.infinite-scroll',
-            callback: function() {
-                $('ul.pagination').remove();
-            }
-        });
-    });
-</script>
+
 @endsection
