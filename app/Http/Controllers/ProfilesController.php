@@ -22,7 +22,11 @@ class ProfilesController extends Controller
             'count.followers.' . $user->id,
             now()->addSeconds(5),
             function () use ($user) {
-                return $user->profile->followers->count();
+                if($user->profile !==NULL){
+                    return $user->profile->followers->count();}
+                else{
+                    return 0;
+                }
             });
         $followingCount = Cache::remember(
             'count.following.' . $user->id,
