@@ -13,15 +13,15 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Post $post)
     {
-        
+
         $users = auth()->user()->following()->pluck('profiles.user_id');
 
-        $posts = Post::whereIn('user_id',$users)->with('user')->latest()->paginate(5);
-        
-        return view('posts.index', compact('posts'));
+        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+        $likes = (auth()->user()) ? auth()->user()->liking->contains($post->id) : false;
 
+        return view('posts.index', compact('posts', 'likes'));
     }
 
     public function create()
@@ -33,25 +33,26 @@ class PostsController extends Controller
     {
         $data = request()->validate([
             'caption' => 'required',
-            'image' => ['required','image'],
+            'image' => ['required', 'image'],
         ]);
 
-        $imagePath=request('image')->store('uploads', 'public');  
+        $imagePath = request('image')->store('uploads', 'public');
 
-        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
+        $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
         $image->save();
 
         auth()->user()->posts()->create([
-            'caption'=>$data['caption'],
-            'image' =>$imagePath,
+            'caption' => $data['caption'],
+            'image' => $imagePath,
         ]);
-                    
-        return redirect('/profile/'.auth()->user()->id);
+
+        return redirect('/profile/' . auth()->user()->id);
     }
-    
+
     public function show(\App\POST $post)
     {
-        
-        return view('posts.show', compact('post'));
+        $likes = (auth()->user()) ? auth()->user()->liking->contains($post->id) : false;
+
+        return view('posts.show', compact('post', 'likes'));
     }
 }

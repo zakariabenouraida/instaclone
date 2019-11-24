@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatesLikePostPivotTable extends Migration
+class CreatesPostUserPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatesLikePostPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('like_post', function (Blueprint $table) {
+        Schema::create('post_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
@@ -28,6 +28,6 @@ class CreatesLikePostPivotTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('like_post');
+        Schema::dropIfExists('post_user');
     }
 }

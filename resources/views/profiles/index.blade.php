@@ -10,18 +10,18 @@
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="d-flex align-items-center pb-3">
                     <div class="h4">{{$user->username}}</div>
-                @can ('view', $user->profile)
+                    @can ('view', $user->profile)
                     <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
-                @endcan
+                    @endcan
                 </div>
                 @can ('update', $user->profile)
-                    <a href="/p/create">Add new post</a>
+                <button class="btn btn-primary"><a href="/p/create" style="color:white;text-decoration:none;">Add new post</a></button>
                 @endcan
 
             </div>
-                @can ('update', $user->profile)
-                <a href="/profile/{{ $user->id }}/edit">Edit profile</a>
-                @endcan
+            @can ('update', $user->profile)
+            <button class="btn btn-primary" style="float:right;"><a href="/profile/{{ $user->id }}/edit" style="color:white;text-decoration:none;">Edit profile</a></button>
+            @endcan
             <div class="d-flex">
                 <div class="pr-5"><strong>{{ $postCount }}</strong> posts</div>
                 <div class="pr-5"><strong>{{ $followersCount }}</strong> followers</div>
@@ -37,11 +37,11 @@
     </div>
     <div class="row pt-5">
         @foreach($user->posts as $post)
-            <div class="col-4 pb-4">
-                <a href="/p/{{ $post->id }}">
-                    <img src="/storage/{{ $post->image }}" class="w-100">
-                </a>
-            </div>
+        <div class="col-4 pb-4">
+            <a href="/p/{{ $post->id }}">
+                <img src="/storage/{{ $post->image }}" class="w-100">
+            </a>
+        </div>
         @endforeach
     </div>
 </div>

@@ -1892,16 +1892,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['postId'],
+  props: ["postId", "likes"],
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
+  },
+  data: function data() {
+    return {
+      status: this.likes
+    };
   },
   methods: {
     likePost: function likePost() {
-      axios.post('/like/' + this.postId); // .then(response => {
+      var _this = this;
+
+      //   axios.post("/like/" + this.postId);
+      // .then(response => {
       //     alert(response.data);
       // });
+      axios.post("/like/" + this.postId).then(function (response) {
+        _this.status = !_this.status;
+        console.log(response.data);
+      })["catch"](function (errors) {
+        if (errors.response.status == 401) {
+          window.location = "/login";
+        }
+      });
+    }
+  },
+  computed: {
+    buttonText: function buttonText() {
+      return this.status ? "Unlike" : "Like";
     }
   }
 });
@@ -37228,9 +37254,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("button", { staticClass: "btn btn-link", on: { click: _vm.likePost } }, [
-      _vm._v("Like")
-    ])
+    _c("button", {
+      staticClass: "btn btn-link btn-primary m-2",
+      staticStyle: { color: "white", "text-decoration": "none" },
+      domProps: { textContent: _vm._s(_vm.buttonText) },
+      on: { click: _vm.likePost }
+    })
   ])
 }
 var staticRenderFns = []
@@ -49401,8 +49430,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('follow-button', __webpack_require__(/*! ./components/FollowButton.vue */ "./resources/js/components/FollowButton.vue")["default"]);
-Vue.component('like-button', __webpack_require__(/*! ./components/LikeButton.vue */ "./resources/js/components/LikeButton.vue")["default"]);
+Vue.component("follow-button", __webpack_require__(/*! ./components/FollowButton.vue */ "./resources/js/components/FollowButton.vue")["default"]);
+Vue.component("like-button", __webpack_require__(/*! ./components/LikeButton.vue */ "./resources/js/components/LikeButton.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49411,7 +49440,7 @@ Vue.component('like-button', __webpack_require__(/*! ./components/LikeButton.vue
 
 window.onload = function () {
   var app = new Vue({
-    el: '#app'
+    el: "#app"
   });
 };
 

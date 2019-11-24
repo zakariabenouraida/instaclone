@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $guarded =[];
-    
+    protected $guarded = [];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -23,8 +23,8 @@ class Post extends Model
     //     return $this->hasMany('App\Comment');
     // }
 
-    public function likes()
+    public function likers()
     {
-        return $this->hasMany(Like::class);
+        return $this->belongsToMany(User::class);
     }
 }

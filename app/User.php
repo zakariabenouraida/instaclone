@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email','username', 'password',
+        'name', 'email', 'username', 'password',
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     protected static function boot()
     {
-        parent::boot(); 
+        parent::boot();
 
         static::created(function ($user) {
             $user->profile()->create([
@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany(Post::class)->orderBy('created_at','DESC');
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 
     public function following()
@@ -78,8 +78,8 @@ class User extends Authenticatable
     //     return $this->hasMany('App\Comment');
     // }
 
-    public function likes()
+    public function liking()
     {
-        return $this->hasMany(Like::class);
+        return $this->belongsToMany(Post::class);
     }
 }
